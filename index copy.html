@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparent Card Slider</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413') no-repeat center center/cover;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    .carousel-item {
+      transition: transform 0.7s ease;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      text-align: center;
+    }
+
+    .btn-read {
+      background-color: #ff4081;
+      border: none;
+      color: #fff;
+      border-radius: 20px;
+      padding: 6px 18px;
+      transition: 0.3s;
+    }
+
+    .btn-read:hover {
+      background-color: #ff6fae;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <h2 class="text-center mb-4">Our Highlights</h2>
+
+  <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 (First 3 cards) -->
+      <div class="carousel-item active">
+        <div class="row justify-content-center g-4">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://picsum.photos/400/200?1" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card One</h5>
+                <a href="#" class="btn btn-read">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://picsum.photos/400/200?2" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card Two</h5>
+                <a href="#" class="btn btn-read">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://picsum.photos/400/200?3" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card Three</h5>
+                <a href="#" class="btn btn-read">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 (Next 2 cards) -->
+      <div class="carousel-item">
+        <div class="row justify-content-center g-4">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://picsum.photos/400/200?4" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card Four</h5>
+                <a href="#" class="btn btn-read">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://picsum.photos/400/200?5" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card Five</h5>
+                <a href="#" class="btn btn-read">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

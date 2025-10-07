@@ -176,7 +176,7 @@ https://templatemo.com/tm-597-neural-glass
      z-index: 100;
      width: 96%;
      max-width: 1200px;
-     padding: 18px 35px;
+     padding: 10px 35px;
      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
      background: rgba(224, 163, 255, 0.08);
      backdrop-filter: blur(25px);
@@ -201,12 +201,12 @@ https://templatemo.com/tm-597-neural-glass
      gap: 12px;
      font-size: 28px;
      font-weight: bold;
-     background: linear-gradient(45deg, #e0a3ff, #ff69b4);
+     /* background: linear-gradient(45deg, #e0a3ff, #ff69b4); */
      -webkit-background-clip: text;
      background-clip: text;
      -webkit-text-fill-color: transparent;
      text-decoration: none;
-     animation: logoGlow 3s ease-in-out infinite;
+     /* animation: logoGlow 3s ease-in-out infinite; */
      transition: all 0.3s ease;
 }
  .logo:hover {
