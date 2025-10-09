@@ -721,7 +721,7 @@ https://templatemo.com/tm-597-neural-glass
      left: 0;
      right: 0;
      bottom: 0;
-     background: linear-gradient(45deg, rgba(224, 163, 255, 0.1), rgba(255, 105, 180, 0.1));
+     /* background: linear-gradient(45deg, rgba(224, 163, 255, 0.1), rgba(255, 105, 180, 0.1)); */
      z-index: 1;
      backdrop-filter: blur(1px);
      transition: all 0.4s ease;
@@ -730,13 +730,16 @@ https://templatemo.com/tm-597-neural-glass
      background: linear-gradient(45deg, rgba(224, 163, 255, 0.2), rgba(255, 105, 180, 0.2));
 }
  .feature-row:nth-child(1) .feature-visual {
-     background-image: url('images/innovative.jpg');
+     background-image: url('images/innovative.png');
 }
  .feature-row:nth-child(2) .feature-visual {
-     background-image: url('images/templatemo-neural-02.jpg');
+     background-image: url('images/high-performance.png');
 }
  .feature-row:nth-child(3) .feature-visual {
-     background-image: url('images/templatemo-neural-03.jpg');
+     background-image: url('images/client.png');
+}
+ .feature-row:nth-child(4) .feature-visual {
+     background-image: url('images/future.png');
 }
  .feature-icon {
      font-size: 4rem;

@@ -10,7 +10,7 @@
   --speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --closed: 5rem;
   --open: 30rem;
-  --accent: #ff6b35;
+  --accent: #5a0783;
 }
 
 
@@ -336,7 +336,7 @@
   cursor: pointer;
 }
 .project-card__btn:hover {
-  background: #ff824f;
+  background: #ed03f5;
 }
 
 .dots {
