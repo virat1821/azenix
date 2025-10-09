@@ -730,7 +730,7 @@ https://templatemo.com/tm-597-neural-glass
      background: linear-gradient(45deg, rgba(224, 163, 255, 0.2), rgba(255, 105, 180, 0.2));
 }
  .feature-row:nth-child(1) .feature-visual {
-     background-image: url('images/templatemo-neural-01.jpg');
+     background-image: url('images/innovative.jpg');
 }
  .feature-row:nth-child(2) .feature-visual {
      background-image: url('images/templatemo-neural-02.jpg');
@@ -1299,6 +1299,9 @@ https://templatemo.com/tm-597-neural-glass
   .section-title {
     font-size: 4rem;
   }
+  .contact-info::before {
+ display: none !important;
+}
 }
 
 /* Tablets (landscape + portrait) */
@@ -1325,4 +1328,10 @@ https://templatemo.com/tm-597-neural-glass
 .contact-info::before {
  display: none !important;
 }
+}
+/* Large devices */
+@media (min-width: 992px) {
+  .contact-info::before {
+    display: block !important;
+  }
 }
