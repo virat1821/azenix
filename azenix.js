@@ -23,6 +23,8 @@ var swiper = new Swiper(".testimonial-wrapper", {
 
 
 
+
+
 (() => {
   const track = document.getElementById("track");
   const wrap = track.parentElement;
@@ -33,6 +35,7 @@ var swiper = new Swiper(".testimonial-wrapper", {
 
   const isMobile = () => matchMedia("(max-width:767px)").matches;
 
+  // Create dots
   cards.forEach((_, i) => {
     const dot = document.createElement("span");
     dot.className = "dot";
@@ -55,7 +58,11 @@ var swiper = new Swiper(".testimonial-wrapper", {
   }
 
   function toggleUI(i) {
-    cards.forEach((c, k) => c.toggleAttribute("active", k === i));
+    cards.forEach((c, k) => {
+      c.toggleAttribute("active", k === i);
+      c.style.transform = k === i ? "scale(1)" : "scale(0.95)";
+      c.style.opacity = k === i ? "1" : "0.7";
+    });
     dots.forEach((d, k) => d.classList.toggle("active", k === i));
     prev.disabled = i === 0;
     next.disabled = i === cards.length - 1;
@@ -75,6 +82,7 @@ var swiper = new Swiper(".testimonial-wrapper", {
   prev.onclick = () => go(-1);
   next.onclick = () => go(1);
 
+  // Keyboard navigation
   addEventListener(
     "keydown",
     (e) => {
@@ -84,6 +92,7 @@ var swiper = new Swiper(".testimonial-wrapper", {
     { passive: true }
   );
 
+  // Hover / click activate
   cards.forEach((card, i) => {
     card.addEventListener(
       "mouseenter",
@@ -92,6 +101,7 @@ var swiper = new Swiper(".testimonial-wrapper", {
     card.addEventListener("click", () => activate(i, true));
   });
 
+  // Touch swipe
   let sx = 0,
     sy = 0;
   track.addEventListener(
@@ -113,6 +123,7 @@ var swiper = new Swiper(".testimonial-wrapper", {
     },
     { passive: true }
   );
+
   if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
 
   addEventListener("resize", () => center(current));

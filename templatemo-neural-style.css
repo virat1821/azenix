@@ -422,7 +422,7 @@ https://templatemo.com/tm-597-neural-glass
          transform: translateY(0) scale(1);
     }
 }
- .hero-subtitle {
+ /* .hero-subtitle {
      font-size: 0.9rem;
      color: #e0a3ff;
      margin-bottom: 25px;
@@ -442,7 +442,11 @@ https://templatemo.com/tm-597-neural-glass
      height: 1px;
      background: linear-gradient(90deg, transparent, #e0a3ff, transparent);
      animation: linePulse 3s ease infinite;
-}
+} */
+
+
+
+
  .hero-subtitle::before {
      left: -60px;
 }
@@ -722,8 +726,8 @@ https://templatemo.com/tm-597-neural-glass
      right: 0;
      bottom: 0;
      /* background: linear-gradient(45deg, rgba(224, 163, 255, 0.1), rgba(255, 105, 180, 0.1)); */
-     z-index: 1;
-     backdrop-filter: blur(1px);
+     /* z-index: 1; */
+     /* backdrop-filter: blur(1px); */
      transition: all 0.4s ease;
 }
  .feature-visual:hover::before {
@@ -1286,12 +1290,37 @@ https://templatemo.com/tm-597-neural-glass
 
 
 
-
 /* ========================= */
 /* 📱 Responsive Media Queries */
 /* ========================= */
 
-/* Large screens (desktops) */
+/* Base (Default - hide on all) */
+.contact-info::before {
+  display: none !important;
+}
+
+/* Extra small (phones <480px) */
+@media (max-width: 480px) {
+  .contact-info::before {
+    display: none !important;
+  }
+}
+
+/* Mobile devices (≤768px) */
+@media (max-width: 768px) {
+  .contact-info::before {
+    display: none !important;
+  }
+}
+
+/* Tablets (≤992px) */
+@media (max-width: 992px) {
+  .contact-info::before {
+    display: none !important;
+  }
+}
+
+/* Large screens (≥1200px) — show it only here */
 @media (min-width: 1200px) {
   .hero-content {
     padding: 120px 80px;
@@ -1303,38 +1332,78 @@ https://templatemo.com/tm-597-neural-glass
     font-size: 4rem;
   }
   .contact-info::before {
- display: none !important;
-}
-}
-
-/* Tablets (landscape + portrait) */
-@media (max-width: 992px) {
-
-
-.contact-info::before {
- display: none !important;
-}
-}
-
-/* Mobile devices */
-@media (max-width: 768px) {
-
-
-.contact-info::before {
- display: none !important;
-}
-}
-
-/* Extra small (phones <480px) */
-@media (max-width: 480px) {
-
-.contact-info::before {
- display: none !important;
-}
-}
-/* Large devices */
-@media (min-width: 992px) {
-  .contact-info::before {
     display: block !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+.hero-subtitle {
+  position: relative;
+  display: inline-block;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+/* Before & After = SVG PQRS pulse waves */
+.hero-subtitle::before,
+.hero-subtitle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 80px;
+  height: 30px;
+  background: none;
+  transform: translateY(-50%);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Left wave */
+.hero-subtitle::before {
+  left: -80px;
+  background: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='80' height='30' viewBox='0 0 100 30'>\
+    <polyline points='0,15 20,15 25,5 30,25 35,15 50,15 55,10 60,20 65,15 80,15 100,15' \
+    fill='none' stroke='%23e0a3ff' stroke-width='2' stroke-linecap='round'/>\
+  </svg>") no-repeat center;
+  background-size: contain;
+}
+
+/* Right wave (mirrored) */
+.hero-subtitle::after {
+  right: -80px;
+  background: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='80' height='30' viewBox='0 0 100 30'>\
+    <polyline points='100,15 80,15 75,5 70,25 65,15 50,15 45,10 40,20 35,15 20,15 0,15' \
+    fill='none' stroke='%23e0a3ff' stroke-width='2' stroke-linecap='round'/>\
+  </svg>") no-repeat center;
+  background-size: contain;
+}
+
+/* Pulse glow effect */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 2px #e0a3ff);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #e0a3ff);
+  }
+}
+
+
