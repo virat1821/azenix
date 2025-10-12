@@ -17,6 +17,11 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://www.amcharts.com/lib/4/geodata/ukLow.js"></script>
 </head>
 
 <body>
@@ -687,7 +692,30 @@
     </div>
   </section>
 
+
+  <!-- <button id="theme-toggle-btn">Toggle Theme</button>  -->
   <!-- Footer -->
+  <section>
+    <h2 class="section-title">Our Location</h2>
+    <div class="container mb-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="chartdiv"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35587.52641471269!2d-3.9396983999999993!3d56.118705299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x488857d73c437831%3A0xfbf01f3702d576ad!2sStirling%2C%20UK!5e0!3m2!1sen!2sin!4v1760274465701!5m2!1sen!2sin"
+              style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
   <footer>
     <div class="footer-content">
       <div class="footer-links">
@@ -712,6 +740,20 @@
   <script src="templatemo-neural-scripts.js"></script>
   <script src="./azenix.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('theme-toggle-btn');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          document.body.classList.toggle('light-theme');
+        });
+      }
+    });
+  </script>
 
 </body>
 
