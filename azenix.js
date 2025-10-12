@@ -131,3 +131,36 @@ var swiper = new Swiper(".testimonial-wrapper", {
   toggleUI(0);
   center(0);
 })();
+
+
+
+
+
+
+
+// Create map instance
+let map = am4core.create("chartdiv", am4maps.MapChart);
+
+// Pull in UK map
+map.geodata = am4geodata_ukLow;
+
+// Set projection
+map.projection = new am4maps.projections.Mercator();
+
+// Create shapes
+let polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
+polygonSeries.useGeodata = true;
+
+// Exclude Isle of Man, Guernsey, Jersey and Ireland
+polygonSeries.exclude = ["GG", "JE", "IM", "IE"];
+
+//Push color to template based on list of regions
+
+// Configure series
+let polygonTemplate = polygonSeries.mapPolygons.template;
+polygonTemplate.tooltipText = "{name}";
+polygonTemplate.fill = am4core.color("#404040");
+
+// Create hover state and set alternative fill color
+let hs = polygonTemplate.states.create("hover");
+hs.properties.fill = am4core.color("#404040").lighten(0.3);
