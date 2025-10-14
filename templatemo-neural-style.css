@@ -1601,3 +1601,6 @@ body.light-theme footer {
 }
 
 
+.modal.fade.show {
+  opacity: 1 !important;
+}
