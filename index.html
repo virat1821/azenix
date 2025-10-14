@@ -676,13 +676,22 @@
         </div>
       </div>
 
-    <form action="sendmail.php" method="post" class="contact-form glass">
+    <!-- <form action="sendmail.php" method="post" class="contact-form glass">
+  <div class="form-group"><input type="text" name="name" placeholder="Name" required></div>
+  <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
+  <div class="form-group"><input type="text" name="subject" placeholder="Subject" required></div>
+  <div class="form-group"><textarea name="message" rows="5" placeholder="Message" required></textarea></div>
+  <button type="submit" class="submit-btn">TRANSMIT TO AZENIX</button>
+</form> -->
+
+<form id="contactForm" class="contact-form glass">
   <div class="form-group"><input type="text" name="name" placeholder="Name" required></div>
   <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
   <div class="form-group"><input type="text" name="subject" placeholder="Subject" required></div>
   <div class="form-group"><textarea name="message" rows="5" placeholder="Message" required></textarea></div>
   <button type="submit" class="submit-btn">TRANSMIT TO AZENIX</button>
 </form>
+
 
     </div>
   </section>
@@ -806,6 +815,29 @@ Our team blends creative design with smart functionality to create responsive, u
     handleModal("openSeo", "modalSeo", "closeSeo");
     handleModal("openBranding", "modalBranding", "closeBranding");
   </script>
+
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form reload
+
+  const serviceID = "service_d8pliqa";
+  const templateID = "template_nx8jows";
+
+ 
+  // Send form data
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      // ✅ Redirect to thank you page
+      window.location.href = "https://azenix-new.netlify.app/thankyou.html"; // 👈 replace with your page name or URL
+      this.reset();
+    }, (err) => {
+      console.error("❌ Failed to send:", err);
+      alert("❌ Something went wrong. Please try again.");
+    });
+});
+</script>
+
 
 </body>
 
