@@ -816,6 +816,15 @@ Our team blends creative design with smart functionality to create responsive, u
     handleModal("openBranding", "modalBranding", "closeBranding");
   </script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+      emailjs.init({
+        publicKey: "jidG4fu62NZiDM0Gf", // 🔹 Replace this
+      });
+  })();
+</script>
+
 
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(event) {
