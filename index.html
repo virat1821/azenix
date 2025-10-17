@@ -56,7 +56,7 @@
         <li><a href="#showcase">Our Soln</a></li>
         <li><a href="#timeline">Evolution</a></li>
         <li><a href="#contact">Connect</a></li>
-        <li><a href="https://example.com" target="_blank" class="external-link">External</a></li>
+        <!-- <li><a href="https://example.com" target="_blank" class="external-link">External</a></li> -->
       </ul>
       </ul>
       <div class="mobile-menu-toggle">
@@ -70,7 +70,7 @@
       <a href="#showcase">Matrix</a>
       <a href="#timeline">Evolution</a>
       <a href="#contact">Connect</a>
-      <a href="https://example.com" target="_blank" class="external-link">External</a>
+      <!-- <a href="https://example.com" target="_blank" class="external-link">External</a> -->
     </div>
   </header>
 
@@ -688,6 +688,7 @@
 </form>
 
 
+
     </div>
   </section>
 
@@ -849,29 +850,24 @@ Our team tracks and refines every step to keep your pipeline full of qualified p
 
 
 
-<!-- ✅ EmailJS SDK -->
+<!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-  (function () {
-    // ✅ Initialize EmailJS correctly
-    emailjs.init({
-      publicKey: "jidG4fu62NZiDM0Gf", // Your actual public key
-    });
-  })();
+  // Initialize EmailJS with your public key
+  emailjs.init("jidG4fu62NZiDM0Gf"); // Just a string, no object needed in v4
 
-  // ✅ Handle form submission
+  // Handle form submission
   document.getElementById("contactForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent page reload
 
-    const serviceID = "service_d8pliqa";
-    const templateID = "template_nx8jows";
+    const serviceID = "service_d8pliqa";     // Your EmailJS Service ID
+    const templateID = "template_nx8jows";   // Your EmailJS Template ID
     const form = this;
 
-    // ✅ Send form data via EmailJS
     emailjs.sendForm(serviceID, templateID, form)
       .then(() => {
-        // Redirect only after success
+        // Success: redirect to thank-you page
         window.location.href = "https://azenix-new.netlify.app/thankyou.html";
         form.reset();
       })

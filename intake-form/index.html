@@ -69,42 +69,41 @@
   </header>
 
 
-
-<form class="contact-form-ui" autocomplete="off">
+<form id="contactFormUI" class="contact-form-ui" autocomplete="off">
   <label>Name <span class="req">*</span></label>
-  <input type="text" required placeholder="Jane Smith">
+  <input type="text" name="name" required placeholder="Jane Smith">
 
   <label>Email address <span class="req">*</span></label>
-  <input type="email" required placeholder="email@website.com">
+  <input type="email" name="email" required placeholder="email@website.com">
 
   <label>What services are you interested in?</label>
   <div class="checkbox-group">
-    <label><input type="checkbox"> Website Development</label>
-    <label><input type="checkbox"> Digital Marketing</label>
-    <label><input type="checkbox"> SEO</label>
-    <label><input type="checkbox"> Lead Generation</label>
-    <label><input type="checkbox"> Site Maintenance</label>
-    <label><input type="checkbox"> Online Promotion</label>
-    <label><input type="checkbox"> Other Digital Services</label>
+    <label><input type="checkbox" name="services" value="Website Development"> Website Development</label>
+    <label><input type="checkbox" name="services" value="Digital Marketing"> Digital Marketing</label>
+    <label><input type="checkbox" name="services" value="SEO"> SEO</label>
+    <label><input type="checkbox" name="services" value="Lead Generation"> Lead Generation</label>
+    <label><input type="checkbox" name="services" value="Site Maintenance"> Site Maintenance</label>
+    <label><input type="checkbox" name="services" value="Online Promotion"> Online Promotion</label>
+    <label><input type="checkbox" name="services" value="Other Digital Services"> Other Digital Services</label>
   </div>
 
   <label>What is your target audience?</label>
-  <input type="text">
+  <input type="text" name="audience">
 
   <label>What is your current website URL?</label>
-  <input type="url">
+  <input type="url" name="website">
 
   <label>What are your primary goals for this project?</label>
-  <textarea rows="3"></textarea>
+  <textarea name="goals" rows="3"></textarea>
 
   <label>What is your estimated budget for this project?</label>
-  <input type="text">
+  <input type="text" name="budget">
 
   <label>What is your preferred timeline for project completion?</label>
-  <input type="text">
+  <input type="text" name="timeline">
 
   <label>How did you hear about us?</label>
-  <select>
+  <select name="referral">
     <option value="">Select</option>
     <option>Search Engine</option>
     <option>Social Media</option>
@@ -112,24 +111,12 @@
     <option>Other</option>
   </select>
 
-  <!-- <label>Which service or services are you interested in?</label>
-  <div class="checkbox-group">
-    <label><input type="checkbox"> Website development</label>
-    <label><input type="checkbox"> Digital marketing</label>
-    <label><input type="checkbox"> SEO optimization</label>
-    <label><input type="checkbox"> Lead generation</label>
-    <label><input type="checkbox"> Social media management</label>
-    <label><input type="checkbox"> Initial consultation</label>
-    <label><input type="checkbox"> Follow-up consultation</label>
-  </div> -->
-
   <label>Additional questions or comments</label>
-  <textarea rows="2" placeholder="Enter any additional questions or comments..."></textarea>
+  <textarea name="comments" rows="2" placeholder="Enter any additional questions or comments..."></textarea>
 
-   <div class="cta-buttons">
-        <a  type="submit" href="./intake-form/index.html" class="cta-button">submit</a>
-        
-      </div>
+  <div class="cta-buttons">
+    <button type="submit" class="cta-button">Submit</button>
+  </div>
 </form>
 
 
@@ -162,6 +149,45 @@
   <script src="../templatemo-neural-scripts.js"></script>
   <script src="../azenix.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("jidG4fu62NZiDM0Gf");
+
+document.getElementById("contactFormUI").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const form = this;
+
+  // Collect selected checkboxes
+  const checkboxes = form.querySelectorAll('input[name="services"]:checked');
+  const servicesSelected = Array.from(checkboxes).map(cb => cb.value).join(", ");
+
+  // Unique hidden input for EmailJS
+  let hiddenInput = form.querySelector('input[name="services_hidden"]');
+  if (!hiddenInput) {
+    hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "services_hidden";
+    form.appendChild(hiddenInput);
+  }
+  hiddenInput.value = servicesSelected;
+
+  // Send form
+  emailjs.sendForm("service_d8pliqa", "template_cbn4wan", form)
+    .then(() => {
+      // Redirect to Thank You page
+      window.location.href = "https://azenix-new.netlify.app/thankyou.html";
+    })
+    .catch(err => {
+      console.error("❌ Failed to send:", err);
+      alert("❌ Something went wrong. Please check the console.");
+    });
+});
+</script>
 
 
 
