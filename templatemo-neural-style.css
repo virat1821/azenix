@@ -1321,7 +1321,8 @@ body.light-theme footer {
 	 .feature-row {
         flex-direction: column;
         gap: 40px;
-		min-height: 720px;
+		min-height: 800px;
+        max-height: 800px;
     }
 
     .feature-row:nth-child(even) {
@@ -1497,6 +1498,7 @@ body.light-theme footer {
 @media (max-width: 480px) {
   .contact-info::before {
     display: none !important;
+            width: 310px;
   }
 }
 
@@ -1505,6 +1507,11 @@ body.light-theme footer {
   .contact-info::before {
     display: none !important;
   }
+  .contact-info {
+    padding: 25px 7px;
+    position: relative;
+            width: 310px;
+}
 }
 
 /* Tablets (≤992px) */
