@@ -849,36 +849,39 @@ Our team tracks and refines every step to keep your pipeline full of qualified p
 
 
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function(){
-      emailjs.init({
-        publicKey: "jidG4fu62NZiDM0Gf", // 🔹 Replace this
-      });
-  })();
-</script>
-
+<!-- ✅ EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent form reload
-
-  const serviceID = "service_d8pliqa";
-  const templateID = "template_nx8jows";
-
- 
-  // Send form data
-  emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      // ✅ Redirect to thank you page
-      window.location.href = "https://azenix-new.netlify.app/thankyou.html"; // 👈 replace with your page name or URL
-      this.reset();
-    }, (err) => {
-      console.error("❌ Failed to send:", err);
-      alert("❌ Something went wrong. Please try again.");
+  (function () {
+    // ✅ Initialize EmailJS correctly
+    emailjs.init({
+      publicKey: "jidG4fu62NZiDM0Gf", // Your actual public key
     });
-});
+  })();
+
+  // ✅ Handle form submission
+  document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent page reload
+
+    const serviceID = "service_d8pliqa";
+    const templateID = "template_nx8jows";
+    const form = this;
+
+    // ✅ Send form data via EmailJS
+    emailjs.sendForm(serviceID, templateID, form)
+      .then(() => {
+        // Redirect only after success
+        window.location.href = "https://azenix-new.netlify.app/thankyou.html";
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("❌ Failed to send:", error);
+        alert("❌ Something went wrong. Please try again later.");
+      });
+  });
 </script>
+
 
 
 </body>
