@@ -25,6 +25,13 @@
 
 
     <style>
+        :root{
+          --accent-purple: #e0a3ff;
+  --accent-pink: #ff69b4;
+  --accent-green: #00ffff;
+  --accent-blue: #9370db;
+        }
+
         body {
             /* font-family: 'Inter', sans-serif;
             background: #0f1724; */
@@ -151,6 +158,26 @@
                 max-width: 100%;
             }
         }
+
+
+        .aboutus-subheading {
+   
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 80px;
+    color: var(--accent-green);
+    position: relative;
+}
+.aboutus-subheading::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 30%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-section-title);
+    border-radius: 2px;
+}
     </style>
 </head>
 
@@ -183,6 +210,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="./index.html">Home</a></li>
+                <li class="active"><a href="#">About Us</a></li>
                 <li><a href="./index.html#features">Why</a></li>
                 <li><a href="./index.html#showcase">Our Soln</a></li>
                 <li><a href="./index.html#timeline">Evolution</a></li>
@@ -198,6 +226,7 @@
         </nav>
         <div class="mobile-nav">
             <a href="./index.html">Home</a>
+            <a class="active" href="#">About Us</a>
             <a href="./index.html#features">Why</a>
             <a href="./index.html#showcase">Our Soln</a>
             <a href="./index.html#timeline">Evolution</a>
@@ -223,7 +252,7 @@
 
 
             <div class="section">
-                <h2>About Azenix Digital</h2>
+                <h2 class="aboutus-subheading">About Azenix Digital</h2>
                 <p class="muted">At Azenix Digital, our mission is simple — to help small and local businesses succeed
                     online. We understand the challenges of standing out in today’s digital world, so we create
                     practical, automated solutions designed to attract, engage, and convert customers.</p>
@@ -236,7 +265,7 @@
 
             <div class="mission-vision">
                 <div class="mission">
-                    <h3>🌟 Our Mission</h3>
+                    <h3 >🌟 Our Mission</h3>
                     <p class="muted">To lift small and local businesses into the digital spotlight through simple,
                         human-centred, and automated solutions. We help you focus on your craft while we grow your
                         visibility and leads.</p>
@@ -285,7 +314,7 @@
                 <p class="muted">Tell us about your business — we’ll propose a focused plan and an affordable roadmap.
                 </p>
                 <div class="cta-buttons">
-                    <a type="button" class="cta-button" href="#contact">Request a Free Consultation</a>
+                    <a type="button" class="cta-button" href="./intake-form/index.html">Request a Free Consultation</a>
                 </div>
             </div>
         </div>
