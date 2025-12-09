@@ -924,16 +924,16 @@ body.light-theme footer {
      background: linear-gradient(45deg, rgba(224, 163, 255, 0.2), rgba(255, 105, 180, 0.2));
 }
  .feature-row:nth-child(1) .feature-visual {
-     background-image: url('images/innovative.png');
+     background-image: url('images/innovative.webp');
 }
  .feature-row:nth-child(2) .feature-visual {
-     background-image: url('images/high-performance.png');
+     background-image: url('images/high-performance.webp');
 }
  .feature-row:nth-child(3) .feature-visual {
-     background-image: url('images/client.png');
+     background-image: url('images/client.webp');
 }
  .feature-row:nth-child(4) .feature-visual {
-     background-image: url('images/future.png');
+     background-image: url('images/future.webp');
 }
  .feature-icon {
      font-size: 4rem;
