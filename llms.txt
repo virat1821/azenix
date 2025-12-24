@@ -1,0 +1,34 @@
+# llms.txt for azenix.co.uk
+# Purpose: Help AI models understand and prioritize the key pages and content of this website.
+
+[site]
+name = Azenix
+url = https://azenix.co.uk/
+description = Azenix is a digital solutions provider offering services such as web development, branding, automation and technology consulting.
+
+[important_pages]
+home = https://azenix.co.uk/
+about = https://azenix.co.uk/aboutus
+intake_form = https://azenix.co.uk/intake-form
+thank_you = https://azenix.co.uk/thankyou
+
+[content_description]
+home = Overview of Azenix services, mission and value.
+about = Company information, goals, mission and profile.
+intake_form = Lead intake form for clients to submit project inquiries.
+thank_you = Confirmation page shown after form submission.
+
+[faq]
+1 = What services does Azenix provide?
+2 = How can clients contact the team?
+3 = How does Azenix handle project intake?
+
+[crawling_instructions]
+allow = All AI crawlers are permitted to read and index this document.
+priority_focus = home, about, intake_form
+
+[contact]
+email = info@azenix.co.uk
+purpose = Contact for business, service enquiries or collaboration.
+
+# End of llms.txt
