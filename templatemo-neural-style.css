@@ -746,7 +746,7 @@ nav {
 }
 
 .hero-description {
-    max-width: 700px;
+    /* max-width: 700px; */
     margin: 40px auto 50px;
     opacity: 0;
     animation: fadeInScale 1.2s ease 0.9s forwards;
@@ -956,7 +956,7 @@ nav {
 
 .feature-content {
     flex: 1;
-    padding: 50px;
+    padding: 40px;
     transform: skew(-5deg);
     transition: all 0.4s ease;
 }
@@ -1017,7 +1017,7 @@ nav {
 }
 
 .feature-icon {
-    font-size: 4rem;
+    font-size: 2.5rem;
     margin-bottom: 25px;
     background: linear-gradient(45deg, #ff0080, #8000ff);
     -webkit-background-clip: text;
@@ -1049,15 +1049,15 @@ nav {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1200px;
+    gap: 50px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 0 20px;
 }
 
 .hexagon {
-    width: 220px;
-    height: 290px;
+    width: 300px;
+    height: 333px;
     position: relative;
     margin: 20px;
     transition: all 0.4s ease;
@@ -1071,7 +1071,7 @@ nav {
     width: 100%;
     height: 100%;
     position: relative;
-    transform: rotate(30deg);
+    /* transform: rotate(30deg); */
     border-radius: 25px;
     padding: 50px 25px;
     display: flex;
@@ -1084,8 +1084,10 @@ nav {
 }
 
 .hexagon:hover .hexagon-inner {
-    transform: rotate(0deg);
-    border-radius: 15px;
+   transition: transform 0.35s ease, border-radius 0.35s ease;
+    border-radius: 5px;
+    transform: scale(1.12);
+    box-shadow: 0 25px 60px rgba(224, 163, 255, 0.2), 0 0 0 1px rgba(224, 163, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .hexagon:nth-child(odd) .hexagon-inner {
@@ -1101,7 +1103,7 @@ nav {
 .hexagon-icon {
     font-size: 2.8rem;
     margin-bottom: 20px;
-    transform: rotate(-30deg);
+    /* transform: rotate(-30deg); */
     filter: drop-shadow(0 0 10px currentColor);
     transition: all 0.4s ease;
 }
@@ -1113,7 +1115,7 @@ nav {
 .hexagon h4 {
     font-size: 1.3rem;
     color: #ffffff;
-    transform: rotate(-30deg);
+    /* transform: rotate(-30deg); */
     margin-bottom: 15px;
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
@@ -1127,7 +1129,7 @@ nav {
 .hexagon p {
     font-size: 0.95rem;
     color: #e0e0e0;
-    transform: rotate(-30deg);
+    /* transform: rotate(-30deg); */
     line-height: 1.5;
     max-width: 140px;
     word-wrap: break-word;
@@ -1391,6 +1393,7 @@ nav {
     box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
 }
 
+
 /* Footer */
 
 footer {
@@ -1468,12 +1471,12 @@ footer {
 
 /* Mobile Responsiveness */
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.9px) {
     .feature-row {
         flex-direction: column;
         gap: 40px;
-        min-height: 800px;
-        max-height: 800px;
+       min-height: 650px;
+        max-height: 750px;
     }
     .feature-row:nth-child(even) {
         flex-direction: column;
@@ -1569,7 +1572,7 @@ footer {
     .hexagon {
         width: 280px;
         /* Increased from 180px */
-        height: 320px;
+        height: 345px;
         /* Increased from 200px */
         margin: 30px auto;
         /* Center and add more spacing */
@@ -1658,7 +1661,7 @@ footer {
 @media (max-width: 480px) {
     .contact-info::before {
         display: none !important;
-        width: 310px;
+        width: 100%;
     }
 }
 
@@ -1671,7 +1674,7 @@ footer {
     .contact-info {
         padding: 25px 7px;
         position: relative;
-        width: 310px;
+        width: 100%;
     }
 }
 
