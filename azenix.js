@@ -26,113 +26,142 @@ var swiper = new Swiper(".testimonial-wrapper", {
 
 
 (() => {
-    const track = document.getElementById("track");
-    const wrap = track.parentElement;
-    const cards = Array.from(track.children);
-    const prev = document.getElementById("prev");
-    const next = document.getElementById("next");
-    const dotsBox = document.getElementById("dots");
+  const track = document.getElementById("track");
+  const wrap = track.parentElement;
+  const cards = [...track.children];
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
+  const dotsBox = document.getElementById("dots");
 
-    const isMobile = () => matchMedia("(max-width:767px)").matches;
+  const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
 
-    // Create dots
-    cards.forEach((_, i) => {
-        const dot = document.createElement("span");
-        dot.className = "dot";
-        dot.onclick = () => activate(i, true);
-        dotsBox.appendChild(dot);
+  let current = 0;
+  let isAnimating = false;
+
+  /* ------------------------------
+     DOTS
+  ------------------------------ */
+  cards.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    dot.addEventListener("click", () => activate(i, true));
+    dotsBox.appendChild(dot);
+  });
+  const dots = [...dotsBox.children];
+
+  /* ------------------------------
+     CENTER CARD
+  ------------------------------ */
+  function centerCard(index) {
+    const card = cards[index];
+    const horizontal = !isMobile();
+
+    const offset = horizontal
+      ? card.offsetLeft - (wrap.clientWidth / 2 - card.clientWidth / 2)
+      : card.offsetTop - (wrap.clientHeight / 2 - card.clientHeight / 2);
+
+    wrap.scrollTo({
+      left: horizontal ? offset : 0,
+      top: horizontal ? 0 : offset,
+      behavior: "smooth"
     });
-    const dots = Array.from(dotsBox.children);
+  }
 
-    let current = 0;
-
-    function center(i) {
-        const card = cards[i];
-        const axis = isMobile() ? "top" : "left";
-        const size = isMobile() ? "clientHeight" : "clientWidth";
-        const start = isMobile() ? card.offsetTop : card.offsetLeft;
-        wrap.scrollTo({
-            [axis]: start - (wrap[size] / 2 - card[size] / 2),
-            behavior: "smooth"
-        });
-    }
-
-    function toggleUI(i) {
-        cards.forEach((c, k) => {
-            c.toggleAttribute("active", k === i);
-            c.style.transform = k === i ? "scale(1)" : "scale(0.95)";
-            c.style.opacity = k === i ? "1" : "0.7";
-        });
-        dots.forEach((d, k) => d.classList.toggle("active", k === i));
-        prev.disabled = i === 0;
-        next.disabled = i === cards.length - 1;
-    }
-
-    function activate(i, scroll) {
-        if (i === current) return;
-        current = i;
-        toggleUI(i);
-        if (scroll) center(i);
-    }
-
-    function go(step) {
-        activate(Math.min(Math.max(current + step, 0), cards.length - 1), true);
-    }
-
-    prev.onclick = () => go(-1);
-    next.onclick = () => go(1);
-
-    // Keyboard navigation
-    addEventListener(
-        "keydown",
-        (e) => {
-            if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
-            if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
-        }, {
-            passive: true
-        }
-    );
-
-    // Hover / click activate
+  /* ------------------------------
+     UI STATE
+  ------------------------------ */
+  function updateUI(index) {
     cards.forEach((card, i) => {
-        card.addEventListener(
-            "mouseenter",
-            () => matchMedia("(hover:hover)").matches && activate(i, true)
-        );
-        card.addEventListener("click", () => activate(i, true));
+      const active = i === index;
+      card.toggleAttribute("active", active);
+      card.style.transform = active ? "scale(1)" : "scale(0.94)";
+      card.style.opacity = active ? "1" : "0.6";
     });
 
-    // Touch swipe
-    let sx = 0,
-        sy = 0;
-    track.addEventListener(
-        "touchstart",
-        (e) => {
-            sx = e.touches[0].clientX;
-            sy = e.touches[0].clientY;
-        }, {
-            passive: true
-        }
+    dots.forEach((dot, i) =>
+      dot.classList.toggle("active", i === index)
     );
 
-    track.addEventListener(
-        "touchend",
-        (e) => {
-            const dx = e.changedTouches[0].clientX - sx;
-            const dy = e.changedTouches[0].clientY - sy;
-            if (isMobile() ? Math.abs(dy) > 60 : Math.abs(dx) > 60)
-                go((isMobile() ? dy : dx) > 0 ? -1 : 1);
-        }, {
-            passive: true
-        }
+    prev.disabled = index === 0;
+    next.disabled = index === cards.length - 1;
+  }
+
+  /* ------------------------------
+     ACTIVATE SLIDE
+  ------------------------------ */
+  function activate(index, scroll = false) {
+    if (index === current || isAnimating) return;
+
+    isAnimating = true;
+    current = index;
+
+    updateUI(index);
+    if (scroll) centerCard(index);
+
+    setTimeout(() => (isAnimating = false), 450);
+  }
+
+  /* ------------------------------
+     NAVIGATION
+  ------------------------------ */
+  function go(step) {
+    activate(
+      Math.min(Math.max(current + step, 0), cards.length - 1),
+      true
     );
+  }
 
-    if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
+  prev.addEventListener("click", () => go(-1));
+  next.addEventListener("click", () => go(1));
 
-    addEventListener("resize", () => center(current));
+  /* ------------------------------
+     KEYBOARD
+  ------------------------------ */
+  window.addEventListener("keydown", (e) => {
+    if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
+    if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
+  });
 
-    toggleUI(0);
-    center(0);
+  /* ------------------------------
+     HOVER / CLICK
+  ------------------------------ */
+  cards.forEach((card, i) => {
+    card.addEventListener("mouseenter", () => {
+      if (window.matchMedia("(hover: hover)").matches) activate(i, true);
+    });
+    card.addEventListener("click", () => activate(i, true));
+  });
+
+  /* ------------------------------
+     TOUCH SWIPE
+  ------------------------------ */
+  let startX = 0, startY = 0;
+
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  track.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+
+    const distance = isMobile() ? dy : dx;
+    if (Math.abs(distance) > 70) {
+      go(distance > 0 ? -1 : 1);
+    }
+  }, { passive: true });
+
+  /* ------------------------------
+     RESPONSIVE
+  ------------------------------ */
+  if (isMobile()) dotsBox.hidden = true;
+
+  window.addEventListener("resize", () => centerCard(current));
+
+  /* INIT */
+  updateUI(0);
+  centerCard(0);
 })();
 
 
@@ -140,30 +169,3 @@ var swiper = new Swiper(".testimonial-wrapper", {
 
 
 
-
-// Create map instance
-let map = am4core.create("chartdiv", am4maps.MapChart);
-
-// Pull in UK map
-map.geodata = am4geodata_ukLow;
-
-// Set projection
-map.projection = new am4maps.projections.Mercator();
-
-// Create shapes
-let polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
-polygonSeries.useGeodata = true;
-
-// Exclude Isle of Man, Guernsey, Jersey and Ireland
-polygonSeries.exclude = ["GG", "JE", "IM", "IE"];
-
-//Push color to template based on list of regions
-
-// Configure series
-let polygonTemplate = polygonSeries.mapPolygons.template;
-polygonTemplate.tooltipText = "{name}";
-polygonTemplate.fill = am4core.color("#404040");
-
-// Create hover state and set alternative fill color
-let hs = polygonTemplate.states.create("hover");
-hs.properties.fill = am4core.color("#404040").lighten(0.3);
